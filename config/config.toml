@@ -1,0 +1,65 @@
+[mysql]
+host="127.0.0.1"
+port="3306"
+db_name="pledge"
+user_name="root"
+password="123456"
+max_open_conns=0
+max_idel_conns=0
+max_life_time=0
+
+[redis]
+host="127.0.0.1"
+port="6379"
+db=1
+password = ""
+max_idle = 10
+max_active = 0
+idle_timeout = 180
+
+[env]
+port = "8080"
+version = "21"
+protocol = "http"
+task_duration = 2
+task_extend_duration = 5
+wss_timeout_duration = 20
+domain_name = "127.0.0.1"
+
+[jwt]
+expire_time = 2592000
+secret_key = "243223ffslsfsldfl412fdsfsdf"
+
+[defaultAdmin]
+userName="admin"
+password="password"
+
+[testNet]
+chain_id="97"
+net_url="https://data-seed-prebsc-1-s1.binance.org:8545"
+plgr_address="0x22E6f32805d2AC7F787ca72b2F0bdbCE1693573b"
+pledge_pool_token="0x80a4D82f1879c7933ee9aa266E8580abaaa9b7c2"
+bsc_pledge_oracle_token="0x4F72DFa7E151767eC583bbaE7cf878Ed12d6c111"
+
+[mainNet]
+chain_id="56"
+net_url="https://bsc-dataseed.binance.org"
+plgr_address="0x6aa91cbfe045f9d154050226fcc830ddba886ced"
+pledge_pool_token="0x25C3f3d3E3299d7C56700CE54303Fbe1E6a16fee"
+bsc_pledge_oracle_token="0x4Aa9EB3149089D7208C9C0403BF1b9bA25ff05BD"
+
+[token]
+logo_url="https://tokens.pancakeswap.finance/pancakeswap-top-100.json"
+
+[Threshold]
+pledge_pool_token_threshold_bnb="100000000000000000"
+
+[email]
+username = "XXXX@gmail.com"
+pwd = "XXXX"
+host = "smtp.gmail.com"
+port = "587"
+from = "pledge beidge <test@gmail.com>"
+subject = "Insufficient balance of bridge account"
+to = ["XXXX@outlook.com"]
+cc = ["XXXX@126.com"]
