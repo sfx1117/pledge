@@ -20,6 +20,17 @@ func NewTokenLogoService() *TokenLogoService {
 	return &TokenLogoService{}
 }
 
+/*
+*
+1、get请求查询token信息
+2、遍历tokens
+
+	2.1、校验logourl是否和redis和表中的一样
+		2.1.1、先查询redis 若无，则查询tokoen_info表中数据，并向reids中插入数据
+			2.1.1.1 若表中也没有数据，则在表中新增数据
+		2.1.2、若redis中有数据、且logoul变更，则更新reids中logourl、symbol字段
+	2.2、若不一样，则更新表（token_info)的logo、symbol、decimals字段
+*/
 func (s *TokenLogoService) UpdateTokenLogo() {
 	res, err := utils.HttpGet(config.Config.Token.LogoUrl, map[string]string{})
 	if err != nil {

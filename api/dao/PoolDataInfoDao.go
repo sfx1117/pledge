@@ -7,12 +7,12 @@ import (
 
 type PoolDataInfoDao struct {
 	PoolId                 int    `json:"poolId" gorm:"cloumn:pool_id"`
-	SettleAmountLend       string `json:"settleAmountLend" gorm:"cloumn:settle_amount_lend"`
-	SettleAmountBorrow     string `json:"settleAmountBorrow" gorm:"cloumn:settle_amount_borrow"`
-	FinishAmountLend       string `json:"finishAmountLend" gorm:"cloumn:finish_amount_lend"`
-	FinishAmountBorrow     string `json:"finishAmountBorrow" gorm:"cloumn:finish_amount_borrow"`
-	LiquidationAmounLend   string `json:"liquidationAmounLend" gorm:"cloumn:liquidation_amoun_lend"`
-	LiquidationAmounBorrow string `json:"liquidationAmounBorrow" gorm:"cloumn:liquidation_amoun_borrow"`
+	SettleAmountLend       string `json:"settleAmountLend" gorm:"cloumn:settle_amount_lend"`             // 结算时的实际借出金额
+	SettleAmountBorrow     string `json:"settleAmountBorrow" gorm:"cloumn:settle_amount_borrow"`         // 结算时的实际借入金额
+	FinishAmountLend       string `json:"finishAmountLend" gorm:"cloumn:finish_amount_lend"`             // 完成时的实际借出金额
+	FinishAmountBorrow     string `json:"finishAmountBorrow" gorm:"cloumn:finish_amount_borrow"`         // 完成时的实际借入金额
+	LiquidationAmounLend   string `json:"liquidationAmounLend" gorm:"cloumn:liquidation_amoun_lend"`     // 清算时的实际借出金额
+	LiquidationAmounBorrow string `json:"liquidationAmounBorrow" gorm:"cloumn:liquidation_amoun_borrow"` // 清算时的实际借入金额
 	ChainId                string `json:"chainId" gorm:"cloumn:chain_id"`
 }
 

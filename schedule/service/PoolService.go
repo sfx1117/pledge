@@ -24,6 +24,21 @@ func NewPoolService() *PoolService {
 func (s *PoolService) UpdateAllPoolInfo() {
 
 }
+
+/*
+*
+1、从链上（智能合约）获取poolbase信息，并且遍历池
+2、组装poolBase
+3、判断池是否新数据或者 信息有变更（从redis查询）
+4、若新数据或者 信息有变更，则保存poolbase到表（poolbases）中
+
+	4.1、新增或更新 borrowTokenInfo和lendTokenInfo到表（token_info）中
+	4.2、新增或更新 poolbase到表（poolbases）中
+
+5、判断poolData是否新增或更新
+
+	5.1新增或更新 poolData到表（pooldata）中
+*/
 func (s *PoolService) UpdataAllPoolInfo() {
 	s.UpdatePoolInfo(config.Config.TestNet.PlgrAddress, config.Config.TestNet.NetUrl, config.Config.TestNet.ChainId)
 	s.UpdatePoolInfo(config.Config.MainNet.PlgrAddress, config.Config.MainNet.NetUrl, config.Config.MainNet.ChainId)
@@ -98,7 +113,7 @@ func (s *PoolService) UpdatePoolInfo(contractAddress, network, chainId string) {
 		//poolBase
 		pbRedisKey := "base_info:pool_" + chainId + "_" + poolId
 		hasInfoData, byteBaseInfoStr, baseInfoMd5Str := s.GetPoolMd5(&poolBase, pbRedisKey)
-		//redis中没有  新数据
+		//redis中没有 或者Redis 有数据但 MD5 不匹配 则更新数据
 		if !hasInfoData || (byteBaseInfoStr != baseInfoMd5Str) {
 			err := model.NewPoolBase().SavePoolBase(chainId, poolId, &poolBase)
 			if err != nil {
@@ -136,9 +151,9 @@ func (s *PoolService) UpdatePoolInfo(contractAddress, network, chainId string) {
 }
 
 func (s *PoolService) GetPoolMd5(poolBase *model.PoolBase, redisKey string) (bool, string, string) {
-	poolBaseBytes, _ := json.Marshal(poolBase)
-	poolBaseMd5Str := utils.Md5(string(poolBaseBytes))
-	redisInfoBytes, _ := db.RedisGet(redisKey)
+	poolBaseBytes, _ := json.Marshal(poolBase)         // 结构体 → JSON
+	poolBaseMd5Str := utils.Md5(string(poolBaseBytes)) // JSON → MD5
+	redisInfoBytes, _ := db.RedisGet(redisKey)         // 从 Redis 读取 MD5
 	if len(redisInfoBytes) > 0 {
 		return true, strings.Trim(string(redisInfoBytes), `"'`), poolBaseMd5Str
 	} else {

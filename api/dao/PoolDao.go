@@ -14,21 +14,21 @@ type SearchRes struct {
 
 type PoolDao struct {
 	PoolID                 int             `json:"pool_id"`
-	SettleTime             string          `json:"settleTime"`
-	EndTime                string          `json:"endTime"`
-	InterestRate           string          `json:"interestRate"`
-	MaxSupply              string          `json:"maxSupply"`
-	LendSupply             string          `json:"lendSupply"`
-	BorrowSupply           string          `json:"borrowSupply"`
-	MartgageRate           string          `json:"martgageRate"`
-	LendToken              string          `json:"lendToken"`
-	LendTokenSymbol        string          `json:"lend_token_symbol"`
-	BorrowToken            string          `json:"borrowToken"`
-	BorrowTokenSymbol      string          `json:"borrow_token_symbol"`
-	State                  string          `json:"state"`
-	SpCoin                 string          `json:"spCoin"`
-	JpCoin                 string          `json:"jpCoin"`
-	AutoLiquidateThreshold string          `json:"autoLiquidateThreshold"`
+	SettleTime             string          `json:"settleTime"`             //结算时间
+	EndTime                string          `json:"endTime"`                //结束时间
+	InterestRate           string          `json:"interestRate"`           //利率
+	MaxSupply              string          `json:"maxSupply"`              //最大供应量
+	LendSupply             string          `json:"lendSupply"`             //借出供应量
+	BorrowSupply           string          `json:"borrowSupply"`           //借入供应量
+	MartgageRate           string          `json:"martgageRate"`           //抵押率
+	LendToken              string          `json:"lendToken"`              //借出token
+	LendTokenSymbol        string          `json:"lend_token_symbol"`      //借出token的别名
+	BorrowToken            string          `json:"borrowToken"`            //借入token
+	BorrowTokenSymbol      string          `json:"borrow_token_symbol"`    //借入token的别名
+	State                  string          `json:"state"`                  //状态
+	SpCoin                 string          `json:"spCoin"`                 //质押
+	JpCoin                 string          `json:"jpCoin"`                 //债务
+	AutoLiquidateThreshold string          `json:"autoLiquidateThreshold"` //自动清算阈值
 	Pooldata               PoolDataInfoDao `json:"pooldata"`
 }
 
