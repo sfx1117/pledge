@@ -21,10 +21,6 @@ func NewPoolService() *PoolService {
 	return &PoolService{}
 }
 
-func (s *PoolService) UpdateAllPoolInfo() {
-
-}
-
 /*
 *
 1、从链上（智能合约）获取poolbase信息，并且遍历池
@@ -39,7 +35,7 @@ func (s *PoolService) UpdateAllPoolInfo() {
 
 	5.1新增或更新 poolData到表（pooldata）中
 */
-func (s *PoolService) UpdataAllPoolInfo() {
+func (s *PoolService) UpdateAllPoolInfo() {
 	s.UpdatePoolInfo(config.Config.TestNet.PlgrAddress, config.Config.TestNet.NetUrl, config.Config.TestNet.ChainId)
 	s.UpdatePoolInfo(config.Config.MainNet.PlgrAddress, config.Config.MainNet.NetUrl, config.Config.MainNet.ChainId)
 }
