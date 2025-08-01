@@ -17,7 +17,7 @@ func Task() {
 		panic("clear redis err" + err.Error())
 	}
 	//init task
-	service.NewPoolService().UpdataAllPoolInfo()
+	service.NewPoolService().UpdateAllPoolInfo()
 	service.NewTokenPriceService().UpdateContractPrice()
 	service.NewTokenSymbolService().UpdateTokenSymbol()
 	service.NewTokenLogoService().UpdateTokenLogo()
